@@ -1,0 +1,28 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Новости - Политех|Фото{% endblock %}
+
+{% block content %}
+<h1>Новости</h1>
+  {% for post in posts %}
+
+    {% if post.image and post.image.url != '/media/temp.jpg' %}
+
+        <img src="{{ post.image.url }}" height="auto"; width="720"/>
+
+    {% endif %}
+
+<h2>
+    <a href="{{ post.get_absolute_url }}">
+        {{ post.title }}
+
+    </a>
+</h2>
+
+
+<p class="date" style="margin-bottom:75px;">
+    Published {{ post.publish }} by {{ post.author }}
+</p>
+{{ post.body|truncatewords:30|linebreaks }}
+  {% endfor %}
+{% endblock %}

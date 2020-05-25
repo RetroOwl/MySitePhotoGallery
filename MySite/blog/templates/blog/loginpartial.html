@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/content/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/content/site.css' %}" />
+    <script src="{% static 'blog/scripts/modernizr-2.6.2.js' %}"></script>
+</head>   
+{% if user.is_authenticated %}
+<form id="logoutForm" action="/logout" method="post" class="navbar-right">
+    {% csrf_token %}
+    <div class="nav navbar-nav navbar-right" style="margin-left: 270px;">
+        <span class="navbar-brand" style="margin-top: 0px;">{{ user.username }} <a href='login' style="margin-left: 5px;">Выход</a> </span>
+    </div>
+</form>
+
+{% else %}
+
+<ul class="nav navbar-nav navbar-right">
+    <li><a href="{% url 'login.html' %}">Log in</a></li>
+</ul>
+
+{% endif %}
+</html>
